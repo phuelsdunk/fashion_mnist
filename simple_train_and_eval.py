@@ -1,6 +1,5 @@
 # coding: utf-8
 import tensorflow as tf
-import numpy as np
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
@@ -62,19 +61,6 @@ def construct_model():
 # Initial train
 model = construct_model()
 model.fit(train_images, train_labels, batch_size=128, epochs=64)
-
-metrics = model.evaluate(test_images, test_labels)
-for e in dict(zip(model.metrics_names, metrics)).items():
-    print('%s: %0.3f' % e)
-
-# Infuse test images
-predicted_test_labels = np.argmax(model.predict(test_images), axis=1)
-combined_images = np.concatenate([train_images, test_images], axis=0)
-combined_labels = np.concatenate([train_labels, predicted_test_labels], axis=0)
-
-# Refit
-model = construct_model()
-model.fit(combined_images, combined_labels, batch_size=128, epochs=64)
 
 metrics = model.evaluate(test_images, test_labels)
 for e in dict(zip(model.metrics_names, metrics)).items():
