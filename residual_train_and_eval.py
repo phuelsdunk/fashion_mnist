@@ -52,7 +52,7 @@ def construct_model():
     model.add(ResidualLayer(64))
     model.add(PredictionLayer(10))
 
-    opt = tf.keras.optimizers.SGD(0.01, momentum=0.9)
+    opt = tf.keras.optimizers.SGD(0.02, momentum=0.9)
     model.compile(optimizer=opt,
                 loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
