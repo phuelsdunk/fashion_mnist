@@ -1,5 +1,6 @@
 # coding: utf-8
 import tensorflow as tf
+import numpy as np
 
 fashion_mnist = tf.keras.datasets.fashion_mnist
 (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
